@@ -6,7 +6,7 @@ Automatically start, split, reset, and time out long loads. Does not require any
 
 You need [racman](https://github.com/MichaelRelaxen/racman).
 
-1. Download the file named "rac3-autosplitter.asl"
+1. [Download the file named "rac3-autosplitter.asl"](https://github.com/king-dedede1/rac3-autosplitter/releases/download/download/rac3-autosplitter.asl)
 
 2. Edit your layout and add a new Scriptable Autosplitter
 
