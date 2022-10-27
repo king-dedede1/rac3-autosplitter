@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Run version="1.7.0">
+  <GameIcon><![CDATA[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]]></GameIcon>
+  <GameName>Ratchet &amp; Clank: Up Your Arsenal</GameName>
+  <CategoryName>Any%</CategoryName>
+  <LayoutPath>
+  </LayoutPath>
+  <Metadata>
+    <Run id="" />
+    <Platform usesEmulator="False">
+    </Platform>
+    <Region>
+    </Region>
+    <Variables />
+  </Metadata>
+  <Offset>-00:00:01</Offset>
+  <AttemptCount>0</AttemptCount>
+  <AttemptHistory />
+  <Segments>
+    <Segment>
+      <Name>Veldin</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Florana</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Marcadia</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Vid-Comic 1</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Annihilation Nation 1</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>VR Skip</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Aquatos</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Daxx</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Obani Gemini</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Blackwater City</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Annihilation Nation 2</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Holostar Studios</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Obani Draco</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Zeldrin Starport</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Vid-Comic 2</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Vid-Comic 3</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Vid-Comic 4</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Metropolis</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Crash Site</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Vid-Comic 5</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Qwark's Hideout</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Phoenix Rescue</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Koros</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Command Center</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Dr. Nefarious</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+  </Segments>
+  <AutoSplitterSettings />
+</Run>
