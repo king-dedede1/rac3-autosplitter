@@ -5,27 +5,34 @@ state("racman") {
 }
 
 startup {
-    settings.Add("path", false, "Use split route");
-    settings.SetToolTip("path", "Use a split path (A list of planets and destinations to split on, this prevents the autosplitter\nfrom splitting when you don't want it to) The path can be edited in the ASL script file");
-    settings.Add("strict", false, "Strict order", "path");
-    settings.SetToolTip("strict", "Require the splits in the path to be completed in order (Not recommended)");
-    settings.Add("onlyShips", true, "Only remove long loads on ship loading screens");
-    settings.SetToolTip("onlyShips", "Fun fact: this only exists because the rules are vague");
-    settings.Add("oldLL", false, "Use old long load removal");
-    settings.SetToolTip("oldLL", "The old method pauses the timer for one second, but it's almost never exactly one second because\nlivesplit is well programmed.The new method just subtracts one second from the timer");
-    settings.Add("neffySplit", true, "Split on defeating biobliterator");
-    settings.SetToolTip("neffySplit", "You'll want this.");
-    settings.Add("ng+", false, "NG+", "path");
-    settings.Add("noQE", false, "NG+ No QE", "path");
-    settings.Add("any%", false, "Any%", "path");
-    settings.Add("atb", false, "All Titanium Bolts", "path");
-    settings.Add("ac", false, "All Collectables", "path");
-    settings.Add("100%", false, "100%", "path");
-    settings.Add("allmissions", false, "NG+ All Missions", "path");
-    settings.Add("llCount", false, "Use long load counter");
-    settings.SetToolTip("llCount", "Count the long loads in a text component. It goes up by 1 \n every time it long loads. (obviously). You need a text component \nwith the \"Left Text\" equal to \"Long Loads\" or it will not work.");
-    settings.Add("debug", false, "Debug features");
-    settings.SetToolTip("debug", "Enable debugging features. Only enable this if you know what you're doing!");
+    settings.Add("USE_SPLIT_ROUTE", true, "Use split route");
+    settings.SetToolTip("USE_SPLIT_ROUTE", "Use a split route.");
+    settings.Add("STRICT_ORDER", false, "Strict order mode", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("STRICT_ORDER", "Require the splits in the path to be completed in order.");
+    settings.Add("SHIP_EXCLUSIVE", true, "Only remove long loads on ship loading screens");
+    settings.SetToolTip("SHIP_EXCLUSIVE", "Don't remove long loads when loading Aquatos clank, Aquatos sewers, metropolis rangers, etc.");
+    settings.Add("OLD_LONG_LOAD_REMOVAL", false, "Use old long load removal");
+    settings.SetToolTip("OLD_LONG_LOAD_REMOVAL", "Use a different method to remove long loads.");
+    settings.Add("BIO_SPLIT", true, "Split on biobliterator");
+    settings.SetToolTip("BIO_SPLIT", "Splits on defeating the biobliterator, the final boss.");
+    settings.Add("CATEGORY_NG+", false, "NG+", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("CATEGORY_NG+", "Preset split route for NG+. Use with the included blank splits.");
+    settings.Add("CATEGORY_NG+_NO_QE", false, "NG+ No QE", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("CATEGORY_NG+", "Preset split route for NG+. Use with the included blank splits.");
+    settings.Add("CATEGORY_ANY%", false, "Any%", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("CATEGORY_NG+", "Preset split route for NG+. Use with the included blank splits.");
+    settings.Add("CATEGORY_ALL_TITANIUM_BOLTS", true, "All Titanium Bolts", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("CATEGORY_NG+", "Preset split route for NG+. Use with the included blank splits.");
+    settings.Add("CATEGORY_ALL_COLLECTABLES", false, "All Collectables", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("CATEGORY_NG+", "Preset split route for NG+. Use with the included blank splits.");
+    settings.Add("CATEGORY_100%", false, "100%", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("CATEGORY_NG+", "Preset split route for NG+. Use with the included blank splits.");
+    settings.Add("CATEGORY_ALL_MISSIONS", false, "NG+ All Missions", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("CATEGORY_NG+", "Preset split route for NG+. Use with the included blank splits.");
+    settings.Add("COUNT_LONG_LOADS", false, "Use long load counter");
+    settings.SetToolTip("COUNT_LONG_LOADS", "Count the long loads in a text component. Requires a text component with the left text set to \"Long Loads\".");
+    settings.Add("DEBUG", false, "Debug features");
+    settings.SetToolTip("DEBUG", "Enable debugging features. Only enable this if you know what you're doing!");
 }
 
 init {
@@ -314,29 +321,29 @@ init {
 
 update {
 
-    if (settings["llCount"] && vars.LLCountText == null) {
+    if (settings["COUNT_LONG_LOADS"] && vars.LLCountText == null) {
         vars.LLCountText = vars.GetTextComponentPointer("Long Loads");
     }
 
-    if (settings["ng+"]) {
+    if (settings["CATEGORY_NG+"]) {
         vars.SplitRoute = vars.ngplus;
     }
-    else if (settings["noQE"]) {
+    else if (settings["CATEGORY_NG+_NO_QE"]) {
         vars.SplitRoute = vars.noqe;
     }
-    else if (settings["any%"]) {
+    else if (settings["CATEGORY_ANY%"]) {
         vars.SplitRoute = vars.anypercent;
     }
-    else if (settings["atb"]) {
+    else if (settings["CATEGORY_ALL_TITANIUM_BOLTS"]) {
         vars.SplitRoute = vars.atb;
     }
-    else if (settings["ac"]) {
+    else if (settings["CATEGORY_ALL_COLLECTABLES"]) {
         vars.SplitRoute = vars.ac;
     }
-    else if (settings["100%"]) {
+    else if (settings["CATEGORY_100%"]) {
         vars.SplitRoute = vars.hundo;
     }
-    else if (settings["allmissions"]) {
+    else if (settings["CATEGORY_ALL_MISSIONS"]) {
         vars.SplitRoute = vars.allMissions;
     }
     else {
@@ -357,10 +364,10 @@ update {
     current.neffyHealth = vars.reader.ReadSingle();
     current.neffyPhase = vars.reader.ReadUInt32();
 
-    if (current.loadingScreen == 1 && old.loadingScreen != 1 && !vars.shouldStopTimer && (!settings["onlyShips"]||vars.shipLevels.Contains(current.destinationPlanet))) {
+    if (current.loadingScreen == 1 && old.loadingScreen != 1 && !vars.shouldStopTimer && (!settings["SHIP_EXCLUSIVE"]||vars.shipLevels.Contains(current.destinationPlanet))) {
         // Count a long load
         vars.longloads++;
-        if (settings["oldLL"]) {
+        if (settings["OLD_LONG_LOAD_REMOVAL"]) {
             vars.timer.Enabled = true;
             vars.shouldStopTimer = true;
         }
@@ -369,21 +376,21 @@ update {
         }     
     }
 
-    if (settings["llCount"]) {
+    if (settings["COUNT_LONG_LOADS"]) {
         if (vars.LLCountText != null) {
             vars.LLCountText.Settings.Text2 = vars.longloads.ToString();
         }
         else  {
-            if (settings["debug"]) print("LLCount is null");
+            if (settings["DEBUG"]) print("LLCount is null");
         }
     }
 
     if (!vars.biobliterator && current.gameState == 0 && current.planet == 20 && current.neffyPhase % 2 == 1 && current.neffyHealth == 1) {
         vars.biobliterator = true;
-        if (settings["debug"]) print("Toggled biobliterator");
+        if (settings["DEBUG"]) print("Toggled biobliterator");
     }
 
-    if (settings["debug"]) {
+    if (settings["DEBUG"]) {
         // Probably useless
         var h = vars.GetTextComponentPointer("NeffyToggle");
         h.Settings.Text2 = vars.biobliterator.ToString();
@@ -406,21 +413,21 @@ start {
 }
 
 split {
-    if (current.neffyHealth == 0 && vars.biobliterator && current.planet == 20 && settings["neffySplit"]) {
-        if (settings["debug"]) print("Splitting on biobliterator");
+    if (current.neffyHealth == 0 && vars.biobliterator && current.planet == 20 && settings["BIO_SPLIT"]) {
+        if (settings["DEBUG"]) print("Splitting on biobliterator");
         vars.biobliterator = false;
         vars.SplitCount++;
         return true;
     }
     else if (current.destinationPlanet != old.destinationPlanet && (current.planet != current.destinationPlanet) && current.destinationPlanet != 0 && current.planet != 0) {
         // we are changing levels (but not reloading, and not going to or from veldin)
-        if (settings["strict"]) {
+        if (settings["STRICT_ORDER"]) {
             if (vars.SplitRoute[vars.SplitCount*2] == current.planet && vars.SplitRoute[vars.SplitCount*2+1] == current.destinationPlanet) {
                 vars.SplitCount++;
                 return true;
             }
         }
-        else if (settings["path"]) {
+        else if (settings["USE_SPLIT_ROUTE"]) {
             for (int i = 0; i < vars.SplitRoute.Length; i += 2) {
                 if (vars.SplitRoute[i] == current.planet && vars.SplitRoute[i+1] == current.destinationPlanet) {
                     vars.SplitCount++;

@@ -1,12 +1,19 @@
 # rac3-autosplitter
 
-Automatically start, split, reset, and time out long loads. Does not require any modification to racman.
+Autosplitter for Ratchet & Clank 3. Automatically start, split, reset, and time out long loads. For use with [LiveSplit](https://github.com/LiveSplit/LiveSplit).
+
+## Features
+* Automatic long load counting and removal
+* Biobliterator split
+* Built-in split routes for all 6 categories, plus ability to make your own
+* Blank splits for all 6 categories
+* Does not require any modification to racman
 
 ## TL;DR setup guide
 
 You need [racman](https://github.com/MichaelRelaxen/racman).
 
-1. [Download the file named "rac3-autosplitter.asl"](https://github.com/king-dedede1/rac3-autosplitter/releases/download/download/rac3-autosplitter.asl)
+1. Download the file named ["rac3-autosplitter.asl"](https://github.com/king-dedede1/rac3-autosplitter/raw/main/rac3-autosplitter.asl) (Right click the link and select "Save link as...", or open the link and press CTRL+S)
 
 2. Edit your layout and add a new Scriptable Autosplitter
 
@@ -56,19 +63,19 @@ By default the split routes don't check the order that the splits are completed 
 
 ### Use split route
 
-Toggles the use of a split route. If it is off the autosplitter splits on every level transition.
+**Enabled by default.** Toggles the use of a split route. If it is off the autosplitter splits on every level transition.
 
 ### Only remove long loads on ship loading screens
 
-If this is on, long loads will only be counted and removed on loading screens with a ship. For example, aquatos sewers and launch site will not count long loads. It's unclear whether the rules call for removing loads in these cases, which is why this it toggleable.
+**Enabled by default.** If this is on, long loads will only be counted and removed on loading screens with a ship. For example, aquatos sewers and launch site will not count long loads. It's unclear whether the rules call for removing loads in these cases, which is why this it toggleable.
 
 ### Use old long load removal
 
-Don't enable this, you'll have a bad time.
+If enabled, long load removal will pause the game timer for about 1 second. If disabled, long load removal will remove one second from the game timer.
 
 ### Split on defeating biobliterator
 
-It is what it says.
+**Enabled by default.** Splits when the Biobliterator's health reaches 0. This should the be the last split in your run. Does not require any modification to the split route.
 
 ### Use long load counter
 
@@ -76,4 +83,4 @@ See [Long load counting](#long-load-counting).
 
 ### Debug features
 
-See [Use old long load removal](#use-old-long-load-removal).
+Enables some debugging features.
