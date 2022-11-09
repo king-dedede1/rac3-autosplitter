@@ -81,6 +81,8 @@ If enabled, long load removal will pause the game timer for about 1 second. If d
 
 See [Long load counting](#long-load-counting).
 
-### Debug features
+## Using the debugger
 
-Enables some debugging features.
+![The debugger in question.](screenshots/debugger.png)
+
+The debugger shows what data is sent to the autosplitter. It is useful for testing your connection speed or fixing connection issues. To use it, download the debugger.lsl layout file and open it in livesplit. Then, download the debugger.asl script file and add it to the layout you downloaded. Then just open racman and it'll work.

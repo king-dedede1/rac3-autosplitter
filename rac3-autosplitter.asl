@@ -31,8 +31,8 @@ startup {
     settings.SetToolTip("CATEGORY_ALL_MISSIONS", "Preset split route for NG+ All Missions.");
     settings.Add("COUNT_LONG_LOADS", false, "Use long load counter");
     settings.SetToolTip("COUNT_LONG_LOADS", "Count the long loads in a text component. Requires a text component with the left text set to \"Long Loads\".");
-    settings.Add("DEBUG", false, "Debug features");
-    settings.SetToolTip("DEBUG", "Enable debugging features. Only enable this if you know what you're doing!");
+    // settings.Add("DEBUG", false, "Debug features");
+    // settings.SetToolTip("DEBUG", "Enable debugging features. Only enable this if you know what you're doing!");
 }
 
 init {
