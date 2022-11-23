@@ -29,6 +29,8 @@ startup {
     settings.SetToolTip("CATEGORY_ALL_MISSIONS", "Preset split route for NG+ All Missions.");
     settings.Add("COUNT_LONG_LOADS", false, "Use long load counter");
     settings.SetToolTip("COUNT_LONG_LOADS", "Count the long loads in a text component. Requires a text component with the left text set to \"Long Loads\".");
+    settings.Add("KOROS_BOLT_2", false, "Koros bolt 2 split");
+    settings.SetToolTip("KOROS_BOLT_2", "Split after getting both titanium bolts in Koros.\nThe courtney gears trophy is counted as a bolt");
 }
 
 init {
@@ -61,6 +63,8 @@ init {
         vars.timer.Enabled = false;
     });
 
+    vars.originPlanet = 0;
+    vars.korosTBs = 0;
     vars.longloads = 0;
 
     #region Level IDs
@@ -398,6 +402,10 @@ update {
         if (settings["DEBUG"]) print("Toggled biobliterator");
     }
 
+    if (current.playerState == 0x74 && old.playerState != 0x74 && current.planet == 14) {
+        vars.korosTBs++;
+    }
+
 }
 
 start {
@@ -406,6 +414,7 @@ start {
     current.gameState == 0){   // The game is in gameplay this frame
         vars.SplitCount = 0;
         vars.longloads = 0;
+        vars.korosTBs = 0;
         vars.biobliterator = false;
         return true;
     } 
@@ -438,6 +447,10 @@ split {
             vars.SplitCount++;
             return true;
         }
+    }
+    else if (current.planet == 14 && vars.korosTBs >= 2 && settings["KOROS_BOLT_2"]) {
+        vars.korosTBs = 0;
+        return true;
     }
 }
 
