@@ -9,8 +9,6 @@ startup {
     settings.SetToolTip("USE_SPLIT_ROUTE", "Use a split route.");
     settings.Add("STRICT_ORDER", false, "Strict order mode", "USE_SPLIT_ROUTE");
     settings.SetToolTip("STRICT_ORDER", "Require the splits in the path to be completed in order.");
-    settings.Add("SHIP_EXCLUSIVE", true, "Only remove long loads on ship loading screens");
-    settings.SetToolTip("SHIP_EXCLUSIVE", "Don't remove long loads when loading Aquatos clank, Aquatos sewers, metropolis rangers, etc.");
     settings.Add("OLD_LONG_LOAD_REMOVAL", false, "Use old long load removal");
     settings.SetToolTip("OLD_LONG_LOAD_REMOVAL", "Use a different method to remove long loads.");
     settings.Add("BIO_SPLIT", true, "Split on biobliterator");
@@ -31,8 +29,6 @@ startup {
     settings.SetToolTip("CATEGORY_ALL_MISSIONS", "Preset split route for NG+ All Missions.");
     settings.Add("COUNT_LONG_LOADS", false, "Use long load counter");
     settings.SetToolTip("COUNT_LONG_LOADS", "Count the long loads in a text component. Requires a text component with the left text set to \"Long Loads\".");
-    // settings.Add("DEBUG", false, "Debug features");
-    // settings.SetToolTip("DEBUG", "Enable debugging features. Only enable this if you know what you're doing!");
 }
 
 init {
@@ -109,8 +105,14 @@ init {
 
     #endregion
 
-    vars.shipLevels = new byte[]{
-        1,2,3,4,5,6,7,8,9,10,11,12,14,16,17,18,19,21,22,23,24
+    // Ignore long loads when flying *to* these planets.
+    vars.llIgnorePlanets = new byte[]{
+        LaunchSite, MetropolisRangers, AquatosClank, AquatosSewers, TyhrranosisRangers
+    }.ToList();
+
+    // Ignore long loads when flying *from* these planets.
+    vars.llIgnoreDestPlanets = new byte[]{
+        LaunchSite, MetropolisRangers, AquatosClank, AquatosSewers, TyhrranosisRangers
     }.ToList();
 
     // Split Route for NG+
@@ -347,9 +349,6 @@ update {
         vars.SplitRoute = vars.allMissions;
     }
     else {
-        // ???
-
-        // this causes a crash but whatever :shrug:
         vars.SplitRoute = null;
     }
 
@@ -364,7 +363,16 @@ update {
     current.neffyHealth = vars.reader.ReadSingle();
     current.neffyPhase = vars.reader.ReadUInt32();
 
-    if (current.loadingScreen == 1 && old.loadingScreen != 1 && !vars.shouldStopTimer && (!settings["SHIP_EXCLUSIVE"]||vars.shipLevels.Contains(current.destinationPlanet))) {
+    if (current.planet != old.planet && current.destinationPlanet != 0) {
+        vars.originPlanet = old.planet;
+    }
+    else if (current.planet == old.planet && current.destinationPlanet == 0) {
+        vars.originPlanet = current.planet;
+    }
+
+    if (current.loadingScreen == 1 && old.loadingScreen != 1 && !vars.shouldStopTimer
+    && !vars.llIgnorePlanets.Contains(vars.originPlanet)
+    && !vars.llIgnoreDestPlanets.Contains(current.destinationPlanet)) {
         // Count a long load
         vars.longloads++;
         if (settings["OLD_LONG_LOAD_REMOVAL"]) {
@@ -388,15 +396,6 @@ update {
     if (!vars.biobliterator && current.gameState == 0 && current.planet == 20 && current.neffyPhase % 2 == 1 && current.neffyHealth == 1) {
         vars.biobliterator = true;
         if (settings["DEBUG"]) print("Toggled biobliterator");
-    }
-
-    if (settings["DEBUG"]) {
-        // Probably useless
-        var h = vars.GetTextComponentPointer("NeffyToggle");
-        h.Settings.Text2 = vars.biobliterator.ToString();
-        vars.GetTextComponentPointer("Neffy Health").Settings.Text2 = current.neffyHealth.ToString();
-        vars.GetTextComponentPointer("Neffy Phase").Settings.Text2 = current.neffyPhase.ToString();
-        vars.GetTextComponentPointer("Game State").Settings.Text2 = current.gameState.ToString();
     }
 
 }

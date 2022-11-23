@@ -36,6 +36,7 @@ init
     vars.ls_text = vars.GetTextComponentPointer("Loading Screen");
     vars.nh_text = vars.GetTextComponentPointer("Nefarious Health");
     vars.np_text = vars.GetTextComponentPointer("Nefarious Phase");
+    vars.op_text = vars.GetTextComponentPointer("Origin Planet");
 }
 
 update
@@ -91,6 +92,14 @@ update
             "VidComic1SpecialEdition"
     };
 
+    if (current.planet != old.planet && current.destinationPlanet != 0) {
+        vars.originPlanet = old.planet;
+    }
+
+    else if (current.planet == old.planet && current.destinationPlanet == 0) {
+        vars.originPlanet = current.planet;
+    }
+
     vars.dp_text.Settings.Text2 = current.destinationPlanet != 0  ? planetsList[current.destinationPlanet-1] : "(none)";
     vars.p_text.Settings.Text2 = current.planet != 0  ? planetsList[current.planet-1] : "(none)";
     vars.ps_text.Settings.Text2 = "0x"+current.playerState.ToString("X");
@@ -99,4 +108,5 @@ update
     vars.ls_text.Settings.Text2 = current.loadingScreen.ToString();
     vars.nh_text.Settings.Text2 = 100*current.neffyHealth+"%";
     vars.np_text.Settings.Text2 = "0x"+current.neffyPhase.ToString("X");
+    vars.op_text.Settings.Text2 = vars.originPlanet != 0  ? planetsList[vars.originPlanet-1] : "(none)";
 }
