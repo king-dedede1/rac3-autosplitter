@@ -320,7 +320,7 @@ init {
         Phoenix, Daxx,
         Daxx, ObaniGemini,
         ObaniGemini, Marcadia
-    }
+    };
 
     vars.LLCountText = null;
 
