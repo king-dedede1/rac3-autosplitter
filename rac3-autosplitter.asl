@@ -27,6 +27,7 @@ startup {
     settings.SetToolTip("CATEGORY_100%", "Preset split route for 100% (with quit exploit). Use with the included blank splits.");
     settings.Add("CATEGORY_ALL_MISSIONS", false, "NG+ All Missions", "USE_SPLIT_ROUTE");
     settings.SetToolTip("CATEGORY_ALL_MISSIONS", "Preset split route for NG+ All Missions.");
+    settings.Add("CATEGORY_10TB", false, "10TB", "USE_SPLIT_ROUTE");
     settings.Add("COUNT_LONG_LOADS", false, "Use long load counter");
     settings.SetToolTip("COUNT_LONG_LOADS", "Count the long loads in a text component. Requires a text component with the left text set to \"Long Loads\".");
     settings.Add("KOROS_BOLT_2", false, "Koros bolt 2 split");
@@ -65,6 +66,7 @@ init {
 
     vars.originPlanet = 0;
     vars.korosTBs = 0;
+    vars.marcadiaTBs = 0;
     vars.longloads = 0;
 
     #region Level IDs
@@ -200,11 +202,12 @@ init {
         vc2, Phoenix,
         vc3, Phoenix,
         vc4, Phoenix,
-        Phoenix, Metropolis,
         Metropolis, Phoenix,
-        CrashSite, Aridia,
-        Aridia, Phoenix,
+        CrashSite, Phoenix,
         vc5, Phoenix,
+        Metropolis, Aridia,
+        Phoenix, Aridia, // Level stack
+        Aridia, QwarksHideout,
         QwarksHideout, PhoenixRescue,
         PhoenixRescue, Koros,
         Koros, CommandCenter,
@@ -311,6 +314,14 @@ init {
         CommandCenter, LaunchSite
     };
 
+    vars.tentb = new byte[]{
+        Veldin, Florana,
+        Florana, Phoenix,
+        Phoenix, Daxx,
+        Daxx, ObaniGemini,
+        ObaniGemini, Marcadia
+    }
+
     vars.LLCountText = null;
 
     vars.GetTextComponentPointer = (Func<string, dynamic>)((name) => {
@@ -351,6 +362,9 @@ update {
     }
     else if (settings["CATEGORY_ALL_MISSIONS"]) {
         vars.SplitRoute = vars.allMissions;
+    }
+    else if (settings["CATEGORY_10TB"]) {
+        vars.SplitRoute = vars.tentb;
     }
     else {
         vars.SplitRoute = null;
@@ -406,6 +420,10 @@ update {
         vars.korosTBs++;
     }
 
+    if (current.playerState == 0x74 && old.playerState != 0x74 && current.planet == 4) {
+        vars.marcadiaTBs++;
+    }
+
 }
 
 start {
@@ -415,6 +433,7 @@ start {
         vars.SplitCount = 0;
         vars.longloads = 0;
         vars.korosTBs = 0;
+        vars.marcadiaTBs = 0;
         vars.biobliterator = false;
         return true;
     } 
@@ -450,6 +469,10 @@ split {
     }
     else if (current.planet == 14 && vars.korosTBs >= 2 && settings["KOROS_BOLT_2"]) {
         vars.korosTBs = 0;
+        return true;
+    }
+    else if (current.planet == 4 && vars.marcadiaTBs >= 2 && settings["CATEGORY_10TB"]) {
+        vars.marcadiaTBs = 0;
         return true;
     }
 }
