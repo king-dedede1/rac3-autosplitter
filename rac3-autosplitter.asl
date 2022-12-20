@@ -30,7 +30,7 @@ startup {
     settings.Add("CATEGORY_10TB", false, "10TB", "USE_SPLIT_ROUTE");
     settings.Add("COUNT_LONG_LOADS", false, "Use long load counter");
     settings.SetToolTip("COUNT_LONG_LOADS", "Count the long loads in a text component. Requires a text component with the left text set to \"Long Loads\".");
-    settings.Add("KOROS_BOLT_2", false, "Koros bolt 2 split");
+    settings.Add("KOROS_BOLT_2", false, "Koros bolt 2 split", "CATEGORY_ALL_TITANIUM_BOLTS");
     settings.SetToolTip("KOROS_BOLT_2", "Split after getting both titanium bolts in Koros.\nThe courtney gears trophy is counted as a bolt");
 }
 
@@ -219,15 +219,15 @@ init {
         Veldin, Florana,
         Florana, Phoenix,
         Marcadia, Phoenix,
+        Phoenix, vc1,
         vc1, Phoenix,
         AnnihilationNation, Phoenix,
         Phoenix, Daxx,
         Daxx, ObaniGemini,
         ObaniGemini, Aquatos,
-        Aquatos, Phoenix,
-        Tyhrranosis, Florana,
-        Florana, BlackwaterCity,
-        BlackwaterCity, AnnihilationNation,
+        Aquatos, BlackwaterCity,
+        BlackwaterCity, Phoenix,
+        Tyhrranosis, AnnihilationNation,
         AnnihilationNation, HolostarClank,
         HolostarRatchet, ObaniDraco,
         ObaniDraco, ZeldrinStarport,
@@ -235,17 +235,19 @@ init {
         vc2, Phoenix,
         vc3, Phoenix,
         vc4, Phoenix,
-        Metropolis, Phoenix,
-        CrashSite, Aridia,
-        Aridia, Phoenix,
+        Metropolis, Florana,
+        Florana, Phoenix,
+        CrashSite, Phoenix,
         vc5, Phoenix,
+        Metropolis, Aridia,
+        Phoenix, QwarksHideout,
         QwarksHideout, PhoenixRescue,
         PhoenixRescue, Koros,
-        Koros, Phoenix,
-        Phoenix, Koros,
-        Koros, CrashSite,
-        CrashSite, Daxx,
-        Daxx, CommandCenter,
+        Koros, Aridia,
+        Aridia, Metropolis,
+        Metropolis, Daxx,
+        Daxx, Phoenix,
+        Phoenix, CommandCenter,
         CommandCenter, LaunchSite
     };
 
