@@ -473,7 +473,7 @@ split {
     }
     else if (current.planet == 4 && vars.marcadiaTBs >= 2 && settings["CATEGORY_10TB"]) {
         vars.marcadiaTBs = 0;
-        return true;
+        // return true;
     }
 }
 
