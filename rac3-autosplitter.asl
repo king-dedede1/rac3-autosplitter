@@ -27,6 +27,8 @@ startup {
     settings.SetToolTip("CATEGORY_100%", "Preset split route for 100% (with quit exploit). Use with the included blank splits.");
     settings.Add("CATEGORY_ALL_MISSIONS", false, "NG+ All Missions", "USE_SPLIT_ROUTE");
     settings.SetToolTip("CATEGORY_ALL_MISSIONS", "Preset split route for NG+ All Missions.");
+    settings.Add("CATEGORY_ACT", false, "NG+ All Character Trophies", "USE_SPLIT_ROUTE");
+    settings.SetToolTip("CATEGORY_ACT", "Preset split route for NG+ All Character Trophies.");
     settings.Add("CATEGORY_10TB", false, "10TB", "USE_SPLIT_ROUTE");
     settings.Add("COUNT_LONG_LOADS", false, "Use long load counter");
     settings.SetToolTip("COUNT_LONG_LOADS", "Count the long loads in a text component. Requires a text component with the left text set to \"Long Loads\".");
@@ -324,6 +326,31 @@ init {
         ObaniGemini, Marcadia
     };
 
+    vars.act = new byte[]{
+        Veldin, Florana,
+        Florana, Phoenix,
+        Phoenix, Marcadia,
+        Marcadia, Phoenix,
+        Phoenix, Daxx,
+        Daxx, ObaniGemini,
+        ObaniGemini, BlackwaterCity,
+        BlackwaterCity, AnnihilationNation,
+        AnnihilationNation, Phoenix,
+        Aquatos, Phoenix,
+        Tyhrranosis, HolostarClank,
+        HolostarRatchet, ObaniDraco,
+        ObaniDraco, ZeldrinStarport,
+        ZeldrinStarport, Phoenix,
+        Phoenix, Metropolis,
+        Metropolis, Phoenix,
+        CrashSite, Phoenix,
+        Phoenix, QwarksHideout,
+        QwarksHideout, PhoenixRescue,
+        PhoenixRescue, Koros,
+        Koros, CommandCenter,
+        CommandCenter, LaunchSite
+    };
+
     vars.LLCountText = null;
 
     vars.GetTextComponentPointer = (Func<string, dynamic>)((name) => {
@@ -367,6 +394,9 @@ update {
     }
     else if (settings["CATEGORY_10TB"]) {
         vars.SplitRoute = vars.tentb;
+    }
+    else if (settings["CATEGORY_ACT"]) {
+        vars.SplitRoute = vars.act;
     }
     else {
         vars.SplitRoute = null;
