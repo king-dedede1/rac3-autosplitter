@@ -30,6 +30,7 @@ startup {
     settings.Add("CATEGORY_ACT", false, "NG+ All Character Trophies", "USE_SPLIT_ROUTE");
     settings.SetToolTip("CATEGORY_ACT", "Preset split route for NG+ All Character Trophies.");
     settings.Add("CATEGORY_10TB", false, "10TB", "USE_SPLIT_ROUTE");
+    settings.Add("CATEGORY_NG+ATB", false, "NG+ ATB", "USE_SPLIT_ROUTE");
     settings.Add("COUNT_LONG_LOADS", false, "Use long load counter");
     settings.SetToolTip("COUNT_LONG_LOADS", "Count the long loads in a text component. Requires a text component with the left text set to \"Long Loads\".");
     settings.Add("KOROS_BOLT_2", false, "Koros bolt 2 split", "CATEGORY_ALL_TITANIUM_BOLTS");
@@ -351,6 +352,36 @@ init {
         CommandCenter, LaunchSite
     };
 
+    vars.ngplusatb = new byte[]{
+        Veldin, Florana,
+        Florana, Phoenix,
+        Phoenix, Marcadia,
+        Marcadia, Phoenix,
+        Phoenix, vc1,
+        vc1, Phoenix,
+        Daxx, ObaniGemini,
+        ObaniGemini, AnnihilationNation,
+        AnnihilationNation, Phoenix,
+        Aquatos, Phoenix,
+        Tyhrranosis, BlackwaterCity,
+        BlackwaterCity, HolostarClank,
+        HolostarRatchet, ObaniDraco,
+        ObaniDraco, ZeldrinStarport,
+        ZeldrinStarport, Phoenix,
+        vc2, Phoenix,
+        vc3, Phoenix,
+        vc4, Phoenix,
+        Metropolis, Phoenix,
+        CrashSite, Phoenix,
+        vc5, Phoenix,
+        Phoenix, Aridia,
+        Aridia, QwarksHideout,
+        QwarksHideout, PhoenixRescue,
+        PhoenixRescue, Koros,
+        Koros, CommandCenter,
+        CommandCenter, LaunchSite
+    };
+
     vars.LLCountText = null;
 
     vars.GetTextComponentPointer = (Func<string, dynamic>)((name) => {
@@ -397,6 +428,9 @@ update {
     }
     else if (settings["CATEGORY_ACT"]) {
         vars.SplitRoute = vars.act;
+    }
+    else if (settings["CATEGORY_NG+ATB"]) {
+        vars.SplitRoute = vars.ngplusatb;
     }
     else {
         vars.SplitRoute = null;
