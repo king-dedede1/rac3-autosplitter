@@ -189,16 +189,18 @@ init {
     vars.atb = new byte[]{
         Veldin, Florana,
         Florana, Phoenix,
+        Phoenix, Marcadia,
         Marcadia, Phoenix,
+        Phoenix, vc1,
         vc1, Phoenix,
         AnnihilationNation, Phoenix,
-        Phoenix, Daxx,
         Daxx, ObaniGemini,
         ObaniGemini, Aquatos,
-        Aquatos, BlackwaterCity,
+        Aquatos, AnnihilationNation,
+        AnnihilationNation, BlackwaterCity,
         BlackwaterCity, Phoenix,
-        Tyhrranosis, AnnihilationNation,
-        AnnihilationNation, HolostarClank,
+        Tyhrranosis, HolostarClank,
+        HolostarClank, HolostarRatchet,
         HolostarRatchet, ObaniDraco,
         ObaniDraco, ZeldrinStarport,
         ZeldrinStarport, Phoenix,
@@ -208,12 +210,10 @@ init {
         Metropolis, Phoenix,
         CrashSite, Phoenix,
         vc5, Phoenix,
-        Metropolis, Aridia,
-        Phoenix, Aridia, // Level stack
+        Phoenix, Aridia,
         Aridia, QwarksHideout,
         QwarksHideout, PhoenixRescue,
         PhoenixRescue, Koros,
-        Koros, CommandCenter,
         CommandCenter, LaunchSite
     };
 
